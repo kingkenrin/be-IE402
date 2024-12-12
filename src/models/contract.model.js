@@ -30,6 +30,7 @@ var ContractSchema = new Schema({
         type: String,
         enum: ["Pending", "Done", "Cancel"],
         required: true,
+        default: "Pending"
     },
     note: {
         type: String,

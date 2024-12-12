@@ -111,6 +111,7 @@ class ContractService {
     static updateContract = async ({ id, month, total, deposit, state, startDay, endDay, note }) => {
         try {
             const contract = await contractModel.findById(id)
+            const room = await roomModel.findById(contract.roomId)
 
             if (!contract) {
                 return {
@@ -129,6 +130,12 @@ class ContractService {
                 contract.deposit = deposit
 
             if (state) {
+                if(state == "Done"){
+                    room.isAvailable == false
+
+                    await room.save()
+                }
+
                 contract.state = state
             }
 

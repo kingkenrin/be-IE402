@@ -79,6 +79,9 @@ class RoomService {
                     message: "room exist"
                 }
             }
+            else{
+                room.roomNumber = roomNumber
+            }
 
             if (floor)
                 room.floor = floor
