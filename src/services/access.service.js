@@ -5,15 +5,15 @@ const forgetPasswordModel = require('../models/forgetPassword.model')
 const nodemailer = require("nodemailer")
 
 class AccessService {
-    static signUp = async ({ username, password, role }) => {
+    static signUp = async ({ email, password, role }) => {
         try {
-            const user = await userModel.findOne({ username: username })
+            const user = await userModel.findOne({ email: email })
             // const existsEmail = await userModel.findOne({ email: email })
 
             if (user) {
                 return {
                     success: false,
-                    message: "username has been used"
+                    message: "email has been used"
                 }
             }
 
@@ -27,7 +27,7 @@ class AccessService {
             const hash = bcrypt.hashSync(password, 10)
 
             const newAccount = new userModel({
-                "username": username,
+                "email": email,
                 "password": hash,
                 "role": role,
                 // "email": email
@@ -48,14 +48,14 @@ class AccessService {
         }
     }
 
-    static login = async ({ username, password }) => {
+    static login = async ({ email, password }) => {
         try {
-            const user = await userModel.findOne({ username: username })
+            const user = await userModel.findOne({ email: email })
 
             if (!user) {
                 return {
                     success: false,
-                    message: "wrong username"
+                    message: "wrong email"
                 }
             }
 
@@ -113,11 +113,14 @@ class AccessService {
                 });
 
                 let info = await transporter.sendMail({
-                    from: 'shopcaulonguit@gmail.com',
+                    from: {
+                        name: 'Web cho thuê chung cư uit',
+                        address: 'shopcaulonguit@gmail.com'
+                    },
                     to: `${email}`,
                     subject: "Mã xác nhận",
                     html: `
-                    Chào ${user.username},<br>
+                    Chào bạn,<br>
 
 Để hoàn tất quy trình, vui lòng nhập mã xác nhận dưới đây:<br>
 
@@ -126,7 +129,7 @@ class AccessService {
 Nếu bạn không thực hiện yêu cầu này, vui lòng bỏ qua email này hoặc liên hệ với chúng tôi để được hỗ trợ.
 <br>
 Trân trọng,<br>
-Web cho thuê căn hộ uit                    
+Web cho thuê chung cư uit                    
 `,
                 })
 
@@ -155,11 +158,14 @@ Web cho thuê căn hộ uit
                 });
 
                 let info = await transporter.sendMail({
-                    from: 'shopcaulonguit@gmail.com',
+                    from: {
+                        name: 'Web cho thuê chung cư uit',
+                        address: 'shopcaulonguit@gmail.com'
+                    },
                     to: `${email}`,
                     subject: "Mã xác nhận",
                     html: `
-                    Chào ${user.username},<br>
+                    Chào bạn,<br>
 
 Để hoàn tất quy trình, vui lòng nhập mã xác nhận dưới đây:<br>
 
@@ -168,7 +174,7 @@ Web cho thuê căn hộ uit
 Nếu bạn không thực hiện yêu cầu này, vui lòng bỏ qua email này hoặc liên hệ với chúng tôi để được hỗ trợ.
 <br>
 Trân trọng,<br>
-Web cho thuê căn hộ uit                    
+Web cho thuê chung cư uit                    
 `,
                 })
 

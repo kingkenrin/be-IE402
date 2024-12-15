@@ -37,17 +37,17 @@ class UserService {
         }
     }
 
-    static addUser = async (file, { username, password, name, phone, email, role }) => {
+    static addUser = async (file, { email, password, name, phone, role }) => {
         try {
-            const user = await userModel.findOne({ username: username })
+            // const user = await userModel.findOne({ username: username })
             const emailExist = await userModel.findOne({ email: email })
 
-            if (user) {
-                return {
-                    success: false,
-                    message: "username exists"
-                }
-            }
+            // if (user) {
+            //     return {
+            //         success: false,
+            //         message: "username exists"
+            //     }
+            // }
 
             if (emailExist) {
                 return {
@@ -59,7 +59,7 @@ class UserService {
             const hash = bcrypt.hashSync(password, 10)
 
             const newuser = new userModel({
-                "username": username,
+                // "username": username,
                 "password": hash,
                 "avatar": file ? file.path : undefined,
                 "name": name,
@@ -183,7 +183,7 @@ class UserService {
                 }
             }
 
-            if(user.favouriteRooms.some((room) => room.toString() == roomId)){
+            if (user.favouriteRooms.some((room) => room.toString() == roomId)) {
                 return {
                     success: false,
                     message: "room already added"

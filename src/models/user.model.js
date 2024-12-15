@@ -4,11 +4,17 @@ const DOCUMENT_NAME = 'User'
 const COLLECTION_NAME = 'Users'
 
 var UserSchema = new Schema({
-    username: {
+    // username: {
+    //     type: String,
+    //     required: true,
+    //     unique: true,
+    //     trim: true
+    // },
+    email: {
         type: String,
-        required: true,
+        trim: true,
         unique: true,
-        trim: true
+        required: true
     },
     password: {
         type: String,
@@ -27,11 +33,6 @@ var UserSchema = new Schema({
     phone: {
         type: String,
         trim: true,
-    },
-    email: {
-        type: String,
-        trim: true,
-        unique: true
     },
     role: {
         type: String,
