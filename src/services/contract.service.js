@@ -230,8 +230,8 @@ class ContractService {
             var accessKey = 'F8BBA842ECF85';
             var secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';//key để test // không đổi
             var partnerCode = 'MOMO';
-            var redirectUrl = 'http://localhost:3000/checkout'; // Link chuyển hướng tới sau khi thanh toán hóa đơn
-            var ipnUrl = 'http://localhost:3000/checkout';   //trang truy vấn kết quả, để trùng với redirect
+            var redirectUrl = 'http://localhost:5173/thanh-toan'; // Link chuyển hướng tới sau khi thanh toán hóa đơn
+            var ipnUrl = 'http://localhost:5173/thanh-toan';   //trang truy vấn kết quả, để trùng với redirect
             var requestType = "payWithMethod";
             // var amount = '1000'; // Lượng tiền của hóa  <lượng tiền test ko dc cao quá>
             var orderId = partnerCode + new Date().getTime(); // mã Đơn hàng, có thể đổi
