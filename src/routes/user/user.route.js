@@ -3,6 +3,7 @@ const accessController = require('../../controllers/access.controller.js')
 const userController = require('../../controllers/user.controller.js')
 const roomController = require('../../controllers/room.controller.js')
 const contractController = require('../../controllers/contract.controller.js')
+const modelBuildingController = require('../../controllers/modelBuilding.controller.js')
 
 const uploader = require('../../configs/config.cloudinary.js')
 
@@ -54,6 +55,22 @@ router.put('/updateRoom',roomController.updateRoom)
 
 //[DELETE] Xoa Room
 router.delete('/deleteRoom', roomController.deleteRoom)
+
+//ModelBuilding
+//[GET] Lay ModelBuilding theo id
+router.get('/getModelBuilding/:id', modelBuildingController.getModelBuildingById)
+
+//[GET] Lay tat ca ModelBuilding
+router.get('/getAllModelBuilding', modelBuildingController.getAllModelBuilding)
+
+//[POST] Them ModelBuilding
+router.post('/addModelBuilding', modelBuildingController.addModelBuilding)
+
+//[PUT] Sua ModelBuilding
+router.put('/updateModelBuilding',modelBuildingController.updateModelBuilding)
+
+//[DELETE] Xoa ModelBuilding
+router.delete('/deleteModelBuilding', modelBuildingController.deleteModelBuilding)
 
 //Contract
 //[GET] Lay Contract theo id
