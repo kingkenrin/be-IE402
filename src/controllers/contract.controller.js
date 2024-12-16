@@ -17,6 +17,14 @@ class ContractController {
         }
     }
 
+    getContractByUserId = async (req, res, next) => {
+        try {
+            return res.status(201).json(await contractService.getContractByUserId(req.params))
+        } catch (error){
+            next(error)
+        }
+    }
+
     addContract = async (req, res, next) => {
         try {
             return res.status(201).json(await contractService.addContract(req.body))

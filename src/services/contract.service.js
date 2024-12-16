@@ -36,6 +36,28 @@ class ContractService {
         }
     }
 
+    static getContractByUserId = async ({ userId }) => {
+        try {
+            const user = await userModel.findById(userId)
+
+            if (!user) {
+                return {
+                    success: false,
+                    message: "wrong user"
+                }
+            }
+
+            const contract = await contractModel.find({ userId: userId }).populate('userId').populate('roomId')
+
+            return contract
+        } catch (error) {
+            return {
+                success: false,
+                message: error.message
+            }
+        }
+    }
+
     static addContract = async ({ userId, roomId, month, total, deposit, state, startDay, endDay, name, phone, email, note }) => {
         try {
             const user = await userModel.findById(userId)
@@ -130,7 +152,7 @@ class ContractService {
                 contract.deposit = deposit
 
             if (state) {
-                if(state == "Done"){
+                if (state == "Done") {
                     room.isAvailable == false
 
                     await room.save()
@@ -196,7 +218,7 @@ class ContractService {
         }
     }
 
-    static payment = async ({ amount, orderInfo, roomId, userId, name, phone, email, note }) => {
+    static payment = async ({ amount, orderInfo, roomId, userId, name, phone, email, note, month, total, startDay, endDay }) => {
         try {
             // test momo:
             // NGUYEN VAN A
@@ -222,7 +244,11 @@ class ContractService {
                     name: name,
                     phone: phone,
                     email: email,
-                    note: note
+                    note: note,
+                    month: month,
+                    total: total,
+                    startDay: startDay,
+                    endDay: endDay
                 })
             )
             var paymentCode = 'T8Qii53fAXyUftPV3m9ysyRhEanUs9KlOPfHgpMR0ON50U10Bh+vZdpJU7VY4z+Z2y77fJHkoDc69scwwzLuW5MzeUKTwPo3ZMaB29imm6YulqnWfTkgzqRaion+EuD7FN9wZ4aXE1+mRt0gHsU193y+yxtRgpmY7SDMU9hCKoQtYyHsfFR5FUAOAKMdw2fzQqpToei3rnaYvZuYaxolprm9+/+WIETnPUDlxCYOiw7vPeaaYQQH0BF0TxyU3zu36ODx980rJvPAgtJzH1gUrlxcSS1HQeQ9ZaVM1eOK/jl8KJm6ijOwErHGbgf/hVymUQG65rHU2MWz9U8QUjvDWA==';

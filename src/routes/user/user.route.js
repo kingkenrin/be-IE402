@@ -57,7 +57,10 @@ router.delete('/deleteRoom', roomController.deleteRoom)
 
 //Contract
 //[GET] Lay Contract theo id
-router.get('/getContract/:id', contractController.getContractById)
+router.get('/getContractById/:id', contractController.getContractById)
+
+//[GET] Lay Contract theo userid
+router.get('/getContractByUserId/:userId', contractController.getContractByUserId)
 
 //[GET] Lay tat ca Contract
 router.get('/getAllContract', contractController.getAllContract)
