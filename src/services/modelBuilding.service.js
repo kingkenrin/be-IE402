@@ -5,7 +5,7 @@ class ModelBuildingService {
         try {
             const modelBuildings = await modelBuildingModel.find({})
 
-            return modelBuildings.map(model => ({name: model.name, _id: model.id, model: JSON.parse(model.model)}))
+            return modelBuildings
         } catch (error) {
             return {
                 success: false,
@@ -25,7 +25,7 @@ class ModelBuildingService {
                 }
             }
 
-            return {name: modelBuilding.name, _id: modelBuilding.id, model: JSON.parse(modelBuilding.model)}
+            return modelBuilding
         } catch (error) {
             return {
                 success: false,

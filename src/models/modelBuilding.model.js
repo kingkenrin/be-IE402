@@ -9,7 +9,7 @@ var ModelBuildingSchema = new Schema({
         required: true,
     },
     model: {
-        type: String,
+        type: Object,
         required: true,
     },
 }, {

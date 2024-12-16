@@ -3,7 +3,7 @@ const roomModel = require('../models/room.model')
 class RoomService {
     static getAllRoom = async () => {
         try {
-            const rooms = await roomModel.find({})
+            const rooms = await roomModel.find({}).populate('modelId')
 
             return rooms
         } catch (error) {
@@ -16,7 +16,7 @@ class RoomService {
 
     static getRoomById = async ({ id }) => {
         try {
-            const room = await roomModel.findById(id)
+            const room = await roomModel.findById(id).populate('modelId')
 
             if (!room) {
                 return {
