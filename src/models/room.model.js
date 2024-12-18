@@ -12,12 +12,12 @@ var RoomSchema = new Schema({
     images: {
         type: [String],
         default: [
-            "https://www.xotels.com/wp-content/uploads/2022/07/Executive-Room-XOTELS.webp",
-            "https://www.decorpot.com/images/blogimage1361284108interior-designs-for-master-bedroom.jpg",
-            "https://toancanhbatdongsan.com.vn/uploads/images/blog/anhtong/2022/04/12/can-ho-cao-cap-1649735963.jpg",
-            "https://hungthinh.com.vn/wp-content/uploads/2021/05/Can-ho-cao-cap-la-gi.jpg",
-            "https://noithatnamviet.com/wp-content/uploads/2022/06/thiet-ke-thi-cong-noi-that-chung-cu-quan-7-12.jpg",
-            "https://static-images.vnncdn.net/files/publish/nhieu-du-an-can-ho-cao-cap-len-toi-hon-130-trieu-dongm2-d3f769fe15f3445cb5d7f6a3aebd44f4.jpg"
+            "https://res.cloudinary.com/dxtslecpc/image/upload/v1734490015/webchungcu/hinh-anh-can-ho-chung-cu-dep-3_fvp5z7.jpg",
+            "https://res.cloudinary.com/dxtslecpc/image/upload/v1734489925/webchungcu/nhieu-du-an-can-ho-cao-cap-len-toi-hon-130-trieu-dongm2-d3f769fe15f3445cb5d7f6a3aebd44f4_zhp4z4.jpg",
+            "https://res.cloudinary.com/dxtslecpc/image/upload/v1734489920/webchungcu/thiet-ke-thi-cong-noi-that-chung-cu-quan-7-12_k6ofpp.jpg",
+            "https://res.cloudinary.com/dxtslecpc/image/upload/v1734489911/webchungcu/Can-ho-cao-cap-la-gi_c7jsyr.jpg",
+            "https://res.cloudinary.com/dxtslecpc/image/upload/v1734489900/webchungcu/can-ho-cao-cap-1649735963_qpfjgn.jpg",
+            "https://res.cloudinary.com/dxtslecpc/image/upload/v1734489889/webchungcu/blogimage1361284108interior-designs-for-master-bedroom_kju8rh.jpg"
         ]
     },
     floor: {
