@@ -1,4 +1,5 @@
 const roomModel = require('../models/room.model')
+const contractModel = require('../models/contract.model')
 
 class RoomService {
     static getAllRoom = async () => {
@@ -79,7 +80,7 @@ class RoomService {
                     message: "room exist"
                 }
             }
-            else{
+            else {
                 room.roomNumber = roomNumber
             }
 
@@ -88,25 +89,52 @@ class RoomService {
 
             if (modelId)
                 room.modelId = modelId
-            
+
             if (price)
                 room.price = price
-            
+
             if (size)
                 room.size = size
-            
+
             if (bedRoom)
                 room.bedRoom = bedRoom
-            
+
             if (restRoom)
                 room.restRoom = restRoom
 
             if (description)
                 room.description = description
 
-            if (isAvailable != undefined)
+            if (isAvailable != undefined) {
+                if (room.isAvailable == false && isAvailable == true) {
+                    const contractRooms = await contractModel.find({ roomId: id })
+
+                    if (contractRooms.some(contract => contract.state == "Pending")) {
+                        return {
+                            success: false,
+                            message: "this room's contract has not been resolved"
+                        }
+                    }
+
+                    if (
+                        contractRooms.some(contract => {
+                            if (contract.state == "Done") {
+                                const currentTime = new Date().getTime()
+
+                                return contract.startDay.getTime() <= currentTime && contract.endDay.getTime() >= currentTime
+                            }
+                        })
+                    ) {
+                        return {
+                            success: false,
+                            message: "this room is being used under contract"
+                        }
+                    }
+                }
+
                 room.isAvailable = isAvailable
-            
+            }
+
             const savedroom = await room.save()
 
             return savedroom

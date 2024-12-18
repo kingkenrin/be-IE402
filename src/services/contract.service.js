@@ -104,7 +104,7 @@ class ContractService {
                 }
             }
 
-            room.isAvailable == false
+            room.isAvailable = false
 
             await room.save()
 
