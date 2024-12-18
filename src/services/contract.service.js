@@ -104,6 +104,10 @@ class ContractService {
                 }
             }
 
+            room.isAvailable == false
+
+            await room.save()
+
             const newContract = new contractModel({
                 userId,
                 roomId,
@@ -152,8 +156,8 @@ class ContractService {
                 contract.deposit = deposit
 
             if (state) {
-                if (state == "Done") {
-                    room.isAvailable == false
+                if (state == "Cancel") {
+                    room.isAvailable == true
 
                     await room.save()
                 }
