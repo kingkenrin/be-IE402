@@ -28,7 +28,7 @@ var ContractSchema = new Schema({
     },
     state: {
         type: String,
-        enum: ["Pending", "Done", "Cancel"],
+        enum: ["Pending", "Done", "Cancel", "Expired"],
         required: true,
         default: "Pending"
     },

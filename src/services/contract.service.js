@@ -156,7 +156,7 @@ class ContractService {
                 contract.deposit = deposit
 
             if (state) {
-                if (state == "Cancel") {
+                if (state == "Cancel" || state == "Expired") {
                     room.isAvailable = true
 
                     await room.save()
