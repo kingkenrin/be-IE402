@@ -157,7 +157,7 @@ class ContractService {
 
             if (state) {
                 if (state == "Cancel") {
-                    room.isAvailable == true
+                    room.isAvailable = true
 
                     await room.save()
                 }
