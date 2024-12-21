@@ -99,9 +99,10 @@ class UserService {
                 }
             }
 
-            const check = await bcrypt.compare(oldPassword, user.password)
 
             if (oldPassword && newPassword) {
+                const check = await bcrypt.compare(oldPassword, user.password)
+
                 if (!check) {
                     return {
                         success: false,
